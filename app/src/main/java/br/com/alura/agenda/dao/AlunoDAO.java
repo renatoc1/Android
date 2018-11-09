@@ -16,20 +16,30 @@ import br.com.alura.agenda.modelo.Aluno;
 public class AlunoDAO extends SQLiteOpenHelper {
 
     public AlunoDAO(Context context) {
-        super(context, "Agenda", null, 2);
+        super(context, "Agenda", null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Alunos (ID INTEGER PRIMARY KEY, NOME TEXT NOT NULL, ENDERECO TEXT, TELEFONE TEXT, EMAIL TEXT, NOTA REAL);";
+        String sql = "CREATE TABLE Alunos (ID INTEGER PRIMARY KEY, NOME TEXT NOT NULL, ENDERECO TEXT, TELEFONE TEXT, EMAIL TEXT, NOTA REAL, CAMINHOFOTO TEXT);";
         db.execSQL(sql);
     }
 
-    @Override
+    /*@Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "DROP TABLE IF EXISTS Alunos";
         db.execSQL(sql);
         onCreate(db);
+    }*/
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        String sql = "";
+        switch (oldVersion) {
+            case 2:
+                sql = "ALTER TABLE Alunos ADD COLUMN CAMINHOFOTO TEXT";
+                db.execSQL(sql);
+        }
     }
 
     public void insere(Aluno aluno) {
@@ -44,8 +54,9 @@ public class AlunoDAO extends SQLiteOpenHelper {
         dados.put("NOME", aluno.getNome());
         dados.put("ENDERECO", aluno.getEndereco());
         dados.put("TELEFONE", aluno.getTelefone());
-        dados.put("EMAIL", aluno.getEmail());
+        dados.put("EMAIL", aluno.getSite());
         dados.put("NOTA", aluno.getNota());
+        dados.put("CAMINHOFOTO", aluno.getCaminhoFoto());
         return dados;
     }
 
@@ -61,8 +72,9 @@ public class AlunoDAO extends SQLiteOpenHelper {
             aluno.setNome(c.getString(c.getColumnIndex("NOME")));
             aluno.setEndereco(c.getString(c.getColumnIndex("ENDERECO")));
             aluno.setTelefone(c.getString(c.getColumnIndex("TELEFONE")));
-            aluno.setEmail(c.getString(c.getColumnIndex("EMAIL")));
+            aluno.setSite(c.getString(c.getColumnIndex("EMAIL")));
             aluno.setNota(c.getDouble(c.getColumnIndex("NOTA")));
+            aluno.setCaminhoFoto(c.getString(c.getColumnIndex("CAMINHOFOTO")));
             alunos.add(aluno);
         }
         c.close();

@@ -7,8 +7,9 @@ public class Aluno implements Serializable {
     private String nome;
     private String endereco;
     private String telefone;
-    private String email;
+    private String site;
     private Double nota;
+    private String caminhoFoto;
 
     public Long getId() {
         return id;
@@ -42,12 +43,12 @@ public class Aluno implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSite() {
+        return site;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSite(String site) {
+        this.site = site;
     }
 
     public Double getNota() {
@@ -56,6 +57,14 @@ public class Aluno implements Serializable {
 
     public void setNota(Double nota) {
         this.nota = nota;
+    }
+
+    public String getCaminhoFoto() {
+        return caminhoFoto;
+    }
+
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.caminhoFoto = caminhoFoto;
     }
 
     @Override
