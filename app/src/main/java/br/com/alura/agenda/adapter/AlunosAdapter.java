@@ -1,4 +1,4 @@
-package br.com.alura.agenda.Adapter;
+package br.com.alura.agenda.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.alura.agenda.ListaAlunosActivity;
 import br.com.alura.agenda.R;
 import br.com.alura.agenda.modelo.Aluno;
 
